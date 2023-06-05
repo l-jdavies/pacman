@@ -1,21 +1,24 @@
 "use client";
 
+import CommandInput from "@/components/CommandInput";
 import { useGameContext } from "@/context/GameContext";
 import React, { useEffect } from "react";
 
-const Pacman = () => {
+const PacmanPage = () => {
   const { gameStarted, pacmanPosition, setGameStarted, setPacmanPosition } =
     useGameContext();
 
   useEffect(() => {
     setGameStarted(true);
     setPacmanPosition({ x: 1, y: 4, direction: "NORTH" });
-    console.log(gameStarted, pacmanPosition)
+    console.log(gameStarted, pacmanPosition);
   }, []);
-  
+
   return (
-    <div>game started: {`${pacmanPosition.x}`}</div>
+    <>
+      <CommandInput />
+    </>
   );
 };
 
-export default Pacman;
+export default PacmanPage;
