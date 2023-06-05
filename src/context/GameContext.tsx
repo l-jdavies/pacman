@@ -8,16 +8,28 @@ type Props = {
 
 type GameContextType = {
   gameStarted: boolean;
-  pacmanPosition: Position;
+  xPosition: string;
+  yPosition: string;
+  direction: string;
+  command: string;
   setGameStarted: (gameStarted: boolean) => void;
-  setPacmanPosition: (position: Position) => void;
+  setXPosition: (xPosition: string) => void;
+  setYPosition: (yPosition: string) => void;
+  setDirection: (direction: string) => void;
+  setCommand: (command: string) => void;
 };
 
 const defaultValues: GameContextType = {
   gameStarted: false,
-  pacmanPosition: { x: 0, y: 0, direction: "NORTH" },
+  xPosition: "0",
+  yPosition: "0",
+  direction: "NORTH",
+  command: "",
   setGameStarted: () => {},
-  setPacmanPosition: () => {},
+  setXPosition: () => {},
+  setYPosition: () => {},
+  setDirection: () => {},
+  setCommand: () => {},
 };
 
 const GameContext = createContext<GameContextType>(defaultValues);
@@ -31,15 +43,25 @@ export default function GameProvider({ children }: Props) {
     defaultValues.gameStarted
   );
 
-  const [pacmanPosition, setPacmanPosition] = useState<Position>(
-    defaultValues.pacmanPosition
-  );
+  const [xPosition, setXPosition] = useState<string>(defaultValues.xPosition);
+
+  const [yPosition, setYPosition] = useState<string>(defaultValues.yPosition);
+
+  const [direction, setDirection] = useState<string>(defaultValues.direction);
+
+  const [command, setCommand] = useState<string>(defaultValues.command);
 
   const value = {
     gameStarted,
-    pacmanPosition,
+    xPosition,
+    yPosition,
+    direction,
+    command,
     setGameStarted,
-    setPacmanPosition,
+    setXPosition,
+    setYPosition,
+    setDirection,
+    setCommand,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

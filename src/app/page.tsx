@@ -5,18 +5,23 @@ import { useGameContext } from "@/context/GameContext";
 import React, { useEffect } from "react";
 
 const PacmanPage = () => {
-  const { gameStarted, pacmanPosition, setGameStarted, setPacmanPosition } =
-    useGameContext();
-
-  useEffect(() => {
-    setGameStarted(true);
-    setPacmanPosition({ x: 1, y: 4, direction: "NORTH" });
-    console.log(gameStarted, pacmanPosition);
-  }, []);
+  const {
+    gameStarted,
+    xPosition,
+    yPosition,
+    direction,
+    command,
+    setGameStarted,
+    setXPosition,
+    setYPosition,
+    setDirection,
+    setCommand,
+  } = useGameContext();
 
   return (
     <>
-      <CommandInput />
+      <CommandInput setCommand={setCommand}/>
+      <p className="text-white">Current command: {command}</p>
     </>
   );
 };
