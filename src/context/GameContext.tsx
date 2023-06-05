@@ -1,22 +1,10 @@
 "use client";
-import { Position } from "@/types/position";
+
+import { GameContextType } from "@/types/gameContext";
 import { createContext, useContext, ReactNode, useState } from "react";
 
 type Props = {
   children: ReactNode;
-};
-
-type GameContextType = {
-  gameStarted: boolean;
-  xPosition: string;
-  yPosition: string;
-  direction: string;
-  command: string;
-  setGameStarted: (gameStarted: boolean) => void;
-  setXPosition: (xPosition: string) => void;
-  setYPosition: (yPosition: string) => void;
-  setDirection: (direction: string) => void;
-  setCommand: (command: string) => void;
 };
 
 const defaultValues: GameContextType = {
