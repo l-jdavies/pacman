@@ -1,27 +1,28 @@
 "use client";
 
-import CommandInput from "@/components/CommandInput";
+import CommandInput from "@/forms/CommandForm";
 import { useGameContext } from "@/context/GameContext";
 import React, { useEffect } from "react";
 
 const PacmanPage = () => {
   const {
     gameStarted,
-    xPosition,
-    yPosition,
-    direction,
-    command,
+    position,
+    playerCommand,
     setGameStarted,
-    setXPosition,
-    setYPosition,
-    setDirection,
-    setCommand,
+    setPosition,
+    setPlayerCommand,
   } = useGameContext();
+
+  useEffect(() => {
+    position.x += 1
+    console.log(position)
+  })
 
   return (
     <>
-      <CommandInput setCommand={setCommand}/>
-      <p className="text-white">Current command: {command}</p>
+      <CommandInput setPlayerCommand={setPlayerCommand} />
+      <p className="text-white">x position {position.x}</p>
     </>
   );
 };

@@ -1,12 +1,10 @@
+import { Position } from "./position";
+
 export type GameContextType = {
   gameStarted: boolean;
-  xPosition: string;
-  yPosition: string;
-  direction: string;
-  command: string;
+  position: Position
+  playerCommand: string;
   setGameStarted: (gameStarted: boolean) => void;
-  setXPosition: (xPosition: string) => void;
-  setYPosition: (yPosition: string) => void;
-  setDirection: (direction: string) => void;
-  setCommand: (command: string) => void;
+  setPosition: (position: Position) => void;
+  setPlayerCommand: (command: string) => void;
 };

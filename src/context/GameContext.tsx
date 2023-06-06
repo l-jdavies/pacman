@@ -1,6 +1,7 @@
 "use client";
 
 import { GameContextType } from "@/types/gameContext";
+import { Position } from "@/types/position";
 import { createContext, useContext, ReactNode, useState } from "react";
 
 type Props = {
@@ -9,15 +10,11 @@ type Props = {
 
 const defaultValues: GameContextType = {
   gameStarted: false,
-  xPosition: "0",
-  yPosition: "0",
-  direction: "NORTH",
-  command: "",
+  position: { x: 0, y: 0, direction: "NORTH" },
+  playerCommand: "",
   setGameStarted: () => {},
-  setXPosition: () => {},
-  setYPosition: () => {},
-  setDirection: () => {},
-  setCommand: () => {},
+  setPosition: () => {},
+  setPlayerCommand: () => {},
 };
 
 const GameContext = createContext<GameContextType>(defaultValues);
@@ -31,25 +28,17 @@ export default function GameProvider({ children }: Props) {
     defaultValues.gameStarted
   );
 
-  const [xPosition, setXPosition] = useState<string>(defaultValues.xPosition);
+  const [position, setPosition] = useState<Position>(defaultValues.position)
 
-  const [yPosition, setYPosition] = useState<string>(defaultValues.yPosition);
-
-  const [direction, setDirection] = useState<string>(defaultValues.direction);
-
-  const [command, setCommand] = useState<string>(defaultValues.command);
+  const [playerCommand, setPlayerCommand] = useState<string>(defaultValues.playerCommand);
 
   const value = {
     gameStarted,
-    xPosition,
-    yPosition,
-    direction,
-    command,
+    position,
+    playerCommand,
     setGameStarted,
-    setXPosition,
-    setYPosition,
-    setDirection,
-    setCommand,
+    setPosition,
+    setPlayerCommand,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
