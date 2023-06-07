@@ -69,3 +69,43 @@ export function handleMove(
       return;
   }
 }
+
+export function handleLeft(
+  position: Position,
+  setPosition: (p: Position) => void
+) {
+  switch (position.f) {
+    case FACE_DIRECTIONS.NORTH:
+      setPosition({ ...position, f: FACE_DIRECTIONS.WEST });
+      return;
+    case FACE_DIRECTIONS.SOUTH:
+      setPosition({ ...position, f: FACE_DIRECTIONS.EAST });
+      return;
+    case FACE_DIRECTIONS.EAST:
+      setPosition({ ...position, f: FACE_DIRECTIONS.NORTH });
+      return;
+    case FACE_DIRECTIONS.WEST:
+      setPosition({ ...position, f: FACE_DIRECTIONS.SOUTH });
+      return;
+  }
+}
+
+export function handleRight(
+  position: Position,
+  setPosition: (p: Position) => void
+) {
+  switch (position.f) {
+    case FACE_DIRECTIONS.NORTH:
+      setPosition({ ...position, f: FACE_DIRECTIONS.EAST });
+      return;
+    case FACE_DIRECTIONS.SOUTH:
+      setPosition({ ...position, f: FACE_DIRECTIONS.WEST });
+      return;
+    case FACE_DIRECTIONS.EAST:
+      setPosition({ ...position, f: FACE_DIRECTIONS.SOUTH });
+      return;
+    case FACE_DIRECTIONS.WEST:
+      setPosition({ ...position, f: FACE_DIRECTIONS.NORTH  });
+      return;
+  }
+}
