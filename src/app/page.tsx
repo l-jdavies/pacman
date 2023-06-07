@@ -3,8 +3,8 @@
 import CommandInput from "@/forms/CommandForm";
 import { useGameContext } from "@/context/GameContext";
 import React, { useEffect, useState } from "react";
+import { handlePlace, isStartGame, isValidCommand } from "@/game_commands";
 import { VALID_COMMANDS } from "@/constants";
-import { isStartGame, isValidCommand } from "@/game_commands";
 
 const PacmanPage = () => {
   const {
@@ -19,32 +19,48 @@ const PacmanPage = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
-    if (!playerCommand) return;
+    // return if no command
+    if (playerCommand[0].length < 1) return;
 
     // determine if user command is valid
-    !isValidCommand(playerCommand[0])
-      ? setErrorMessage(
-          "Invalid command. Enter 'MOVE', 'PLACE', 'LEFT', 'RIGHT' or 'REPORT"
-        )
-      : setErrorMessage("");
-
-    // determine if game has already started or if user command is to start game
-    const startGame = isStartGame(playerCommand[0]);
-    if (!gameStarted && !startGame) {
-      setErrorMessage("Game must be started with the 'PLACE' command");
-    } else if (startGame) {
-      setGameStarted(true);
-      setErrorMessage("");
+    if (!isValidCommand(playerCommand[0])) {
+      setErrorMessage(
+        "Invalid command. Enter 'MOVE', 'PLACE', 'LEFT', 'RIGHT' or 'REPORT"
+      );
+      return;
     } else {
       setErrorMessage("");
     }
+
+    // determine if game has already started or if user command is to start game
+    const startGame = isStartGame(playerCommand[0]);
+
+    if (startGame) {
+      setGameStarted(true);
+      setErrorMessage("");
+    }
+
+    if ((!gameStarted && !startGame)) {
+      setErrorMessage("Game must be started with the 'PLACE' command");
+      return
+    }
+      
+
+    // if user has entered valid command and game has started, handle user command
+    switch(playerCommand[0]) {
+      case VALID_COMMANDS.PLACE:
+        handlePlace(playerCommand, setPosition)
+        return
+    }
+
+  
   }, [playerCommand]);
 
   return (
     <div>
       <CommandInput errorMessage={errorMessage} />
 
-      <p className="text-white">x position {playerCommand}</p>
+      <p className="text-white">x position {position.x} , {position.y}, {position.f}</p>
     </div>
   );
 };

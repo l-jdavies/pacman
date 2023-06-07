@@ -8,7 +8,7 @@ const CommandInput = ({ errorMessage }: { errorMessage: string }) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const transformInput = userInput.toUpperCase().split(",");
+    const transformInput = userInput.replace(/\s+/g, '').toUpperCase().split(",");
     setPlayerCommand(transformInput);
 
     // @ts-ignore

@@ -1,5 +1,6 @@
 "use client";
 
+import { ORIGIN_POSITION } from "@/constants";
 import { GameContextType } from "@/types/gameContext";
 import { Position } from "@/types/position";
 import { createContext, useContext, ReactNode, useState } from "react";
@@ -10,8 +11,8 @@ type Props = {
 
 const defaultValues: GameContextType = {
   gameStarted: false,
-  position: { x: 0, y: 0, direction: "NORTH" },
-  playerCommand: "",
+  position: ORIGIN_POSITION,
+  playerCommand: [""],
   setGameStarted: () => {},
   setPosition: () => {},
   setPlayerCommand: () => {},
@@ -30,7 +31,7 @@ export default function GameProvider({ children }: Props) {
 
   const [position, setPosition] = useState<Position>(defaultValues.position)
 
-  const [playerCommand, setPlayerCommand] = useState<string>(defaultValues.playerCommand);
+  const [playerCommand, setPlayerCommand] = useState<string[]>(defaultValues.playerCommand);
 
   const value = {
     gameStarted,
