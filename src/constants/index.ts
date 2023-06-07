@@ -5,3 +5,6 @@ export const VALID_COMMANDS = {
   RIGHT: "RIGHT",
   REPORT: "REPORT",
 }
+
+export const MAX_GRID_POSITION = 4
+export const MIN_GRID_POSITION = 0
