@@ -44,3 +44,28 @@ function isValidPlaceCommand(command: string[]) {
 
   return true;
 }
+
+// if move command will result in pacman moving off the board, command will be ignored
+export function handleMove(
+  position: Position,
+  setPosition: (p: Position) => void
+) {
+  switch (position.f) {
+    case FACE_DIRECTIONS.NORTH:
+      if (position.y < MAX_GRID_POSITION)
+        setPosition({ ...position, y: (position.y += 1) });
+      return;
+    case FACE_DIRECTIONS.SOUTH:
+      if (position.y > MIN_GRID_POSITION)
+        setPosition({ ...position, y: (position.y -= 1) });
+      return;
+    case FACE_DIRECTIONS.EAST:
+      if (position.x < MAX_GRID_POSITION)
+        setPosition({ ...position, x: (position.x += 1) });
+      return;
+    case FACE_DIRECTIONS.WEST:
+      if (position.x > MIN_GRID_POSITION)
+        setPosition({ ...position, x: (position.x -= 1) });
+      return;
+  }
+}

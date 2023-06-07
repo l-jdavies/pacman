@@ -3,7 +3,12 @@
 import CommandInput from "@/forms/CommandForm";
 import { useGameContext } from "@/context/GameContext";
 import React, { useEffect, useState } from "react";
-import { handlePlace, isStartGame, isValidCommand } from "@/game_commands";
+import {
+  handleMove,
+  handlePlace,
+  isStartGame,
+  isValidCommand,
+} from "@/game_commands";
 import { VALID_COMMANDS } from "@/constants";
 
 const PacmanPage = () => {
@@ -40,27 +45,29 @@ const PacmanPage = () => {
       setErrorMessage("");
     }
 
-    if ((!gameStarted && !startGame)) {
+    if (!gameStarted && !startGame) {
       setErrorMessage("Game must be started with the 'PLACE' command");
-      return
+      return;
     }
-      
 
     // if user has entered valid command and game has started, handle user command
-    switch(playerCommand[0]) {
+    switch (playerCommand[0]) {
       case VALID_COMMANDS.PLACE:
-        handlePlace(playerCommand, setPosition)
-        return
+        handlePlace(playerCommand, setPosition);
+        return;
+      case VALID_COMMANDS.MOVE:
+        handleMove(position, setPosition);
+        return;
     }
-
-  
   }, [playerCommand]);
 
   return (
     <div>
       <CommandInput errorMessage={errorMessage} />
 
-      <p className="text-white">x position {position.x} , {position.y}, {position.f}</p>
+      <p className="text-white">
+        x position {position.x} , {position.y}, {position.f}
+      </p>
     </div>
   );
 };
