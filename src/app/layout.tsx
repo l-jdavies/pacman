@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 
 const press_start_2p = Press_Start_2P({
   weight: ["400"],
-  subsets: ['latin'],
+  subsets: ["latin"],
 });
 
 export const metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`bg-black ${press_start_2p.className}`}>
         <Header></Header>
-          <GameProvider>{children}</GameProvider>
+        <GameProvider>{children}</GameProvider>
       </body>
     </html>
   );
