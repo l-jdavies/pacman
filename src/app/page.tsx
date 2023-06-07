@@ -4,6 +4,7 @@ import CommandInput from "@/forms/CommandForm";
 import { useGameContext } from "@/context/GameContext";
 import React, { useEffect, useState } from "react";
 import {
+  handleLeft,
   handleMove,
   handlePlace,
   isStartGame,
@@ -57,6 +58,12 @@ const PacmanPage = () => {
         return;
       case VALID_COMMANDS.MOVE:
         handleMove(position, setPosition);
+        return;
+      case VALID_COMMANDS.LEFT:
+        handleLeft(position, setPosition);
+        return;
+      case VALID_COMMANDS.RIGHT:
+        handleLeft(position, setPosition);
         return;
     }
   }, [playerCommand]);

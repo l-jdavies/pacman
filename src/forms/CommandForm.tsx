@@ -19,6 +19,7 @@ const CommandInput = ({ errorMessage }: { errorMessage: string }) => {
     <form
       className="text-white text-center"
       id="command-form"
+      data-testid="command-form"
       onSubmit={(e) => handleSubmit(e)}
     >
       <label htmlFor="game_command" className="">
