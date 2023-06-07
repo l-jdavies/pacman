@@ -1,0 +1,7 @@
+export const VALID_COMMANDS = {
+  PLACE: "PLACE",
+  MOVE: "MOVE",
+  LEFT: "LEFT",
+  RIGHT: "RIGHT",
+  REPORT: "REPORT",
+}
