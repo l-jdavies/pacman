@@ -1,14 +1,23 @@
 import { useGameContext } from "@/context/GameContext";
 import React, { FormEvent, useEffect, useState } from "react";
 
-const CommandInput = ({ errorMessage }: { errorMessage: string }) => {
+const CommandInput = ({
+  errorMessage,
+  showSuccess,
+}: {
+  errorMessage: string;
+  showSuccess: boolean;
+}) => {
   const [userInput, setUserInput] = useState<string>("");
 
-  const { setPlayerCommand } = useGameContext();
+  const { setPlayerCommand, playerCommand } = useGameContext();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const transformInput = userInput.replace(/\s+/g, '').toUpperCase().split(",");
+    const transformInput = userInput
+      .replace(/\s+/g, "")
+      .toUpperCase()
+      .split(",");
     setPlayerCommand(transformInput);
 
     // @ts-ignore
@@ -41,6 +50,7 @@ const CommandInput = ({ errorMessage }: { errorMessage: string }) => {
           Submit
         </button>
       </div>
+      {showSuccess && <p className="text-[#0FFF50]">Successfully submitted command: {playerCommand}</p>}
       {errorMessage && <p className="text-red-700 pt-2">{errorMessage}</p>}
     </form>
   );

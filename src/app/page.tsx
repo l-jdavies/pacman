@@ -19,6 +19,7 @@ const PacmanPage = () => {
     useGameContext();
 
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [showReport, setShowReport] = useState<boolean>(false);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const PacmanPage = () => {
       setErrorMessage(
         "Invalid command. Enter 'MOVE', 'PLACE', 'LEFT', 'RIGHT' or 'REPORT"
       );
+      setShowSuccess(false);
       return;
     } else {
       setErrorMessage("");
@@ -45,6 +47,7 @@ const PacmanPage = () => {
 
     if (!gameStarted && !startGame) {
       setErrorMessage("Game must be started with the 'PLACE' command");
+      setShowSuccess(false);
       return;
     }
 
@@ -52,25 +55,30 @@ const PacmanPage = () => {
     switch (playerCommand[0]) {
       case VALID_COMMANDS.PLACE:
         handlePlace(playerCommand, setPosition);
+        setShowSuccess(true);
         return;
       case VALID_COMMANDS.MOVE:
         handleMove(position, setPosition);
+        setShowSuccess(true);
         return;
       case VALID_COMMANDS.LEFT:
         handleLeft(position, setPosition);
+        setShowSuccess(true);
         return;
       case VALID_COMMANDS.RIGHT:
         handleLeft(position, setPosition);
+        setShowSuccess(true);
         return;
       case VALID_COMMANDS.REPORT:
         handleReport(setShowReport);
+        setShowSuccess(true);
         return;
     }
   }, [playerCommand]);
 
   return (
     <div>
-      <CommandForm errorMessage={errorMessage} />
+      <CommandForm errorMessage={errorMessage} showSuccess={showSuccess}/>
       {showReport && <Report />}
     </div>
   );
