@@ -31,15 +31,15 @@ const CommandInput = ({
       data-testid="command-form"
       onSubmit={(e) => handleSubmit(e)}
     >
-      <label htmlFor="game_command" className="">
+      <label htmlFor="game_command" className="pb-5">
         Enter a valid command below:
       </label>
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center py-4">
         <input
           id="game_command"
           type="text"
           placeholder="PLACE,0,0,NORTH"
-          className="p-1.5 mr-2 my-3 rounded focus:border-none focus:ring-blue-700 placeholder:pl-1 text-black"
+          className="p-1.5 mr-3 my-3 rounded focus:border-none focus:ring-blue-700 placeholder:pl-1 text-black"
           onChange={(e) => setUserInput(e.target.value)}
           required
         />
