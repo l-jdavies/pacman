@@ -1,7 +1,7 @@
 import { useGameContext } from "@/context/GameContext";
 import React, { FormEvent, useEffect, useState } from "react";
 
-const CommandInput = ({
+const CommandForm = ({
   errorMessage,
   showSuccess,
 }: {
@@ -28,7 +28,6 @@ const CommandInput = ({
     <>
       <form
         id="command-form"
-        data-testid="command-form"
         onSubmit={(e) => handleSubmit(e)}
         className="text-white"
       >
@@ -38,6 +37,7 @@ const CommandInput = ({
         <div className="flex-wrap py-4">
           <input
             id="game_command"
+            data-testid="command_input"
             type="text"
             placeholder="PLACE,0,0,NORTH"
             className="p-1.5 mr-3 my-3 rounded focus:border-none focus:ring-blue-700 placeholder:pl-1 text-black"
@@ -54,13 +54,13 @@ const CommandInput = ({
       </form>
 
       {showSuccess && (
-        <p className="text-[#0FFF50] flex flex-col">
-          Successfully submitted command: {playerCommand}
+        <p className="text-[#0FFF50] flex flex-col" data-testid="success_message">
+          Successfully submitted command: {userInput.toUpperCase()}
         </p>
       )}
-      {errorMessage && <p className="text-red-700 pt-2">{errorMessage}</p>}
+      {errorMessage && <p className="text-red-700 pt-2" data-testid="error_message">{errorMessage}</p>}
     </>
   );
 };
 
-export default CommandInput;
+export default CommandForm;

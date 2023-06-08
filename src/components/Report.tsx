@@ -5,7 +5,7 @@ const Report = () => {
   const { position } = useGameContext();
 
   return (
-    <div className="text-gray-500 pt-5">
+    <div className="text-gray-500 pt-5" data-testid="report">
       <p>Position report:</p>
       <p>X: {position.x}</p>
       <p>Y: {position.y}</p>
