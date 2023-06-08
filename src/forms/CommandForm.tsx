@@ -25,34 +25,41 @@ const CommandInput = ({
   };
 
   return (
-    <form
-      className="text-white text-center"
-      id="command-form"
-      data-testid="command-form"
-      onSubmit={(e) => handleSubmit(e)}
-    >
-      <label htmlFor="game_command" className="pb-5">
-        Enter a valid command below:
-      </label>
-      <div className="flex flex-wrap justify-center py-4">
-        <input
-          id="game_command"
-          type="text"
-          placeholder="PLACE,0,0,NORTH"
-          className="p-1.5 mr-3 my-3 rounded focus:border-none focus:ring-blue-700 placeholder:pl-1 text-black"
-          onChange={(e) => setUserInput(e.target.value)}
-          required
-        />
-        <button
-          type="submit"
-          className="border-white border-2 my-3 p-2 rounded focus:border-blue-700 hover:border-blue-700"
-        >
-          Submit
-        </button>
-      </div>
-      {showSuccess && <p className="text-[#0FFF50]">Successfully submitted command: {playerCommand}</p>}
+    <>
+      <form
+        id="command-form"
+        data-testid="command-form"
+        onSubmit={(e) => handleSubmit(e)}
+        className="text-white"
+      >
+        <label htmlFor="game_command" className="pb-5">
+          Enter a valid command below:
+        </label>
+        <div className="flex-wrap py-4">
+          <input
+            id="game_command"
+            type="text"
+            placeholder="PLACE,0,0,NORTH"
+            className="p-1.5 mr-3 my-3 rounded focus:border-none focus:ring-blue-700 placeholder:pl-1 text-black"
+            onChange={(e) => setUserInput(e.target.value)}
+            required
+          />
+          <button
+            type="submit"
+            className="border-white border-2 my-3 p-2 rounded focus:border-blue-700 hover:border-blue-700"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+
+      {showSuccess && (
+        <p className="text-[#0FFF50] flex flex-col">
+          Successfully submitted command: {playerCommand}
+        </p>
+      )}
       {errorMessage && <p className="text-red-700 pt-2">{errorMessage}</p>}
-    </form>
+    </>
   );
 };
 
