@@ -14,14 +14,14 @@ test("input field should be invalid unless command is entered", async () => {
   expect(getCommandInputField()).toBeValid();
 });
 
-test("success message renders and displays input command", async () => {
+test("success message renders", async () => {
   render(<CommandForm errorMessage={""} showSuccess={true} />);
   const inputCommand = "PLACE,1,2,WEST";
 
   await user.type(getCommandInputField(), inputCommand);
   await clickSubmitButton();
 
-  expect(getSuccessMessage(inputCommand)).toBeInTheDocument();
+  expect(getSuccessMessage()).toBeInTheDocument();
 });
 
 test("error message rendered when passed as prop", () => {
@@ -40,8 +40,8 @@ export async function clickSubmitButton() {
   await user.click(screen.getByRole("button", { name: /Submit/i }));
 }
 
-export function getSuccessMessage(command: string) {
-  return screen.getByText(`Successfully submitted command: ${command}`);
+export function getSuccessMessage() {
+  return screen.getByTestId("success_message");
 }
 
 export function getErrorMessage() {

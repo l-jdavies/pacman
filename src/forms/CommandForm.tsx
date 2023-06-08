@@ -1,5 +1,5 @@
 import { useGameContext } from "@/context/GameContext";
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { Dispatch, FormEvent, SetStateAction, useEffect, useState } from "react";
 
 const CommandForm = ({
   errorMessage,
@@ -14,6 +14,7 @@ const CommandForm = ({
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     const transformInput = userInput
       .replace(/\s+/g, "")
       .toUpperCase()
@@ -55,7 +56,7 @@ const CommandForm = ({
 
       {showSuccess && (
         <p className="text-[#0FFF50] flex flex-col" data-testid="success_message">
-          Successfully submitted command: {userInput.toUpperCase()}
+          Successfully submitted command: {playerCommand.join(",")}
         </p>
       )}
       {errorMessage && <p className="text-red-700 pt-2" data-testid="error_message">{errorMessage}</p>}
