@@ -13,6 +13,7 @@ import {
 import { VALID_COMMANDS } from "@/constants";
 import CommandForm from "@/forms/CommandForm";
 import Report from "@/components/Report";
+import GhostIcon from "@/components/GhostIcon";
 
 const PacmanPage = () => {
   const { gameStarted, position, playerCommand, setGameStarted, setPosition } =
@@ -78,6 +79,7 @@ const PacmanPage = () => {
 
   return (
     <div>
+      <GhostIcon />
       <CommandForm errorMessage={errorMessage} showSuccess={showSuccess}/>
       {showReport && <Report />}
     </div>
