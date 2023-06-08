@@ -1,28 +1,25 @@
 "use client";
 
-import CommandInput from "@/forms/CommandForm";
 import { useGameContext } from "@/context/GameContext";
 import React, { useEffect, useState } from "react";
 import {
   handleLeft,
   handleMove,
   handlePlace,
+  handleReport,
   isStartGame,
   isValidCommand,
 } from "@/game_commands";
 import { VALID_COMMANDS } from "@/constants";
+import CommandForm from "@/forms/CommandForm";
+import Report from "@/components/Report";
 
 const PacmanPage = () => {
-  const {
-    gameStarted,
-    position,
-    playerCommand,
-    setGameStarted,
-    setPosition,
-    setPlayerCommand,
-  } = useGameContext();
+  const { gameStarted, position, playerCommand, setGameStarted, setPosition } =
+    useGameContext();
 
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showReport, setShowReport] = useState<boolean>(false);
 
   useEffect(() => {
     // return if no command
@@ -65,16 +62,16 @@ const PacmanPage = () => {
       case VALID_COMMANDS.RIGHT:
         handleLeft(position, setPosition);
         return;
+      case VALID_COMMANDS.REPORT:
+        handleReport(setShowReport);
+        return;
     }
   }, [playerCommand]);
 
   return (
     <div>
-      <CommandInput errorMessage={errorMessage} />
-
-      <p className="text-white">
-        x position {position.x} , {position.y}, {position.f}
-      </p>
+      <CommandForm errorMessage={errorMessage} />
+      {showReport && <Report />}
     </div>
   );
 };

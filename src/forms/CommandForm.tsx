@@ -29,7 +29,7 @@ const CommandInput = ({ errorMessage }: { errorMessage: string }) => {
         <input
           id="game_command"
           type="text"
-          placeholder="PLACE 0,0,NORTH"
+          placeholder="PLACE,0,0,NORTH"
           className="p-1.5 mr-2 my-3 rounded focus:border-none focus:ring-blue-700 placeholder:pl-1 text-black"
           onChange={(e) => setUserInput(e.target.value)}
           required

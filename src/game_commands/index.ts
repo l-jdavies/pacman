@@ -6,6 +6,7 @@ import {
   VALID_COMMANDS,
 } from "@/constants";
 import { Position } from "@/types/position";
+import { Dispatch, SetStateAction } from "react";
 
 export function isValidCommand(command: string) {
   return Object.values(VALID_COMMANDS).includes(command);
@@ -105,7 +106,11 @@ export function handleRight(
       setPosition({ ...position, f: FACE_DIRECTIONS.SOUTH });
       return;
     case FACE_DIRECTIONS.WEST:
-      setPosition({ ...position, f: FACE_DIRECTIONS.NORTH  });
+      setPosition({ ...position, f: FACE_DIRECTIONS.NORTH });
       return;
   }
+}
+
+export function handleReport(setShowReport: Dispatch<SetStateAction<boolean>>) {
+  setShowReport(true);
 }
