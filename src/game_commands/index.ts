@@ -32,7 +32,7 @@ export function handlePlace(
   setPosition({ x: xNumber, y: yNumber, f: command[3] });
 }
 
-function isValidPlaceCommand(command: string[]) {
+export function isValidPlaceCommand(command: string[]) {
   if (command.length !== 4) return false;
 
   const xNumber = Number(command[1]);

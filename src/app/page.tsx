@@ -75,12 +75,13 @@ const PacmanPage = () => {
         setShowSuccess(true);
         return;
     }
+
   }, [playerCommand]);
 
   return (
     <>
-      <GhostIcon />
       <div className="flex flex-col items-center px-2">
+        <GhostIcon />
         <CommandForm errorMessage={errorMessage} showSuccess={showSuccess} />
         {showReport && <Report />}
       </div>
