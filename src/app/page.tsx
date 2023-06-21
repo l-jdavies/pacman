@@ -7,6 +7,7 @@ import {
   handleMove,
   handlePlace,
   handleReport,
+  handleRight,
   isStartGame,
   isValidCommand,
 } from "@/game_commands";
@@ -67,7 +68,7 @@ const PacmanPage = () => {
         setShowSuccess(true);
         return;
       case VALID_COMMANDS.RIGHT:
-        handleLeft(position, setPosition);
+        handleRight(position, setPosition);
         setShowSuccess(true);
         return;
       case VALID_COMMANDS.REPORT:
